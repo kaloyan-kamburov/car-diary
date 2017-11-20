@@ -37,6 +37,10 @@ export class MileagePage {
 	}
 
 	ionViewDidEnter() {
+		
+	}
+
+	generateFuelData(records) {
 
 	}
 

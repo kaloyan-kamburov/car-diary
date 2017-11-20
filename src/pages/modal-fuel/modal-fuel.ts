@@ -81,14 +81,15 @@ export class ModalFuelPage {
 
 	saveRecord(formValue) {
 		this.loading.present();
+		
+		let obj = formValue;
+		obj.price = this.recordPrice;
 
 		if (this.isEditMode) {
 			this.db.list('fuel').update(this.currentRecord.key, formValue).then(() => {
 				this.loading.dismiss();
 			});
 		} else {
-			let obj = formValue;
-			obj.price = this.recordPrice;
 
 			let elementRef = firebase.database().ref('/fuel').push(obj);
 
@@ -96,8 +97,8 @@ export class ModalFuelPage {
 
 			elementRef.update(obj).then(() => {
 				this.loading.dismiss();
-			})
-		}		 
+			});
+		}
 		 
 		this.closeModal();
 	}
