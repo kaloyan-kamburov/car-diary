@@ -59,7 +59,7 @@ export class HomePage {
 
 		for (let record of records) {
 			this.milagePrice += record.price;
-			this.litersQuantity = (parseFloat(this.litersQuantity) + parseFloat(record.quantity)).toFixed(2);
+			this.litersQuantity = Math.round(parseFloat(this.litersQuantity) + parseFloat(record.quantity), 2); 
 		
 			if (this.gasStations.hasOwnProperty(record.station)) {
 				this.gasStations[record.station]++;
