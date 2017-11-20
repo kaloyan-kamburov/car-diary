@@ -4,6 +4,16 @@ page-home ion-col {
     align-items: center!important;
 
     ion-icon {
-        margin: 0 auto;
+        // margin: 0 auto;
+        position: absolute;
+        top: 15px;
+        left: 50%;
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+    }
+
+    p {
+        line-height: 20px;
     }
 }

@@ -27,6 +27,15 @@ const fireBaseConfig = {
 	messagingSenderId: "108361378319"
 };
 
+// const fireBaseConfig = {
+//     apiKey: "AIzaSyBDA1leZaz_DtUXWBwsfyW01HnUCkpwoC0",
+//     authDomain: "bla1-19012.firebaseapp.com",
+//     databaseURL: "https://bla1-19012.firebaseio.com",
+//     projectId: "bla1-19012",
+//     storageBucket: "bla1-19012.appspot.com",
+//     messagingSenderId: "785637267184"
+// };
+
 @NgModule({
 	declarations: [
 		MyApp,

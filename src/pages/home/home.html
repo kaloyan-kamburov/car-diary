@@ -7,21 +7,41 @@
 <ion-content padding>
 		<ion-grid>
 			<ion-row>
-				<ion-col col-2>
+				<ion-col col-1>
 					<ion-icon name="ai-gas-station"></ion-icon>
 				</ion-col>
-				<ion-col col-10>
-					<p *ngIf="!noFuelRecords">Последно зареждане: {{lastFuelMileage}} км</p>
-					<p *ngIf="noFuelRecords">Няма въведени разходи за гориво.</p>
+				<ion-col col-11>
+					<div *ngIf="!noFuelRecords">
+						<p>Последно зареждане: <b>{{lastFuelMileage}} км</b></p>
+						<p>Среден разход: <b>{{averageConsumption}} л / 100 км</b></p>
+						<p>Общо литри: <b>{{litersQuantity}} л</b></p>
+						<p>Общо разходи за гориво: <b>{{milagePrice}} лв</b></p>
+						<p>Предпочитана бензиностанция: 
+							<b>
+								<span *ngFor="let station of preferredGasStations">
+									{{ station }}
+								</span>
+							</b>
+						</p>
+					</div>
+					<div *ngIf="noFuelRecords">
+						<p>Няма въведени разходи за гориво.</p>
+					</div>
 				</ion-col>
-			</ion-row>
+			</ion-row><hr/>
 			<ion-row>
-				<ion-col col-2>
+				<ion-col col-1>
 					<ion-icon name="logo-usd"></ion-icon>
 				</ion-col>
-				<ion-col col-10>
-					<p *ngIf="!noExpensesRecords">Последен разход: {{lastExpenseMileage}} км</p>
-					<p *ngIf="noExpensesRecords">Няма въведени други разходи.</p>
+				<ion-col col-11>
+					<div *ngIf="noExpensesRecords">
+						<p>Няма въведени разходи.</p>
+					</div>
+					<div *ngIf="!noExpensesRecords">
+						<p>Последен разход: <b>{{lastExpenseMileage}} км</b></p>
+						<p>Общо други разходи: <b>{{expensesTotal}} лв</b></p>
+					</div>
+					
 				</ion-col>
 			</ion-row>
 		</ion-grid>

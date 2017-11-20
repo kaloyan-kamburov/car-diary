@@ -15,6 +15,11 @@ const fireCreds = {
 	password: "cardiary85"
 }
 
+// const fireCreds = {
+// 	email: "tati123@tati123.com",
+// 	password: "tati123!@"
+// }
+
 @Component({
 	templateUrl: 'app.html'
 })
