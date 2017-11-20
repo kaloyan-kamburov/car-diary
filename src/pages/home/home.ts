@@ -10,17 +10,18 @@ import { AngularFireDatabase } from 'angularfire2/database';
 export class HomePage {
 	public loading;
 	public currentUser;
+	
 	public lastFuelMileage;
 	public lastExpenseMileage;
 	public noFuelRecords: boolean = true;
 	public noExpensesRecords: boolean = true;
 
-	public kilometers = 0;
-	public averageConsumption = 0;
-	public milagePrice = 0;
-	public litersQuantity = 0;
+	public kilometers;
+	public averageConsumption;
+	public milagePrice;
+	public litersQuantity;
 
-	public expensesTotal = 0;
+	public expensesTotal;
 	public preferredGasStations = [];
 	public gasStations = {};
 	public maxGasStationVisits = 0;
@@ -56,10 +57,11 @@ export class HomePage {
 		this.preferredGasStations = [];
 		this.milagePrice = 0;
 		this.litersQuantity = 0;
+		this.averageConsumption = 0;
 
 		for (let record of records) {
 			this.milagePrice += record.price;
-			this.litersQuantity = Math.round(parseFloat(this.litersQuantity) + parseFloat(record.quantity), 2); 
+			this.litersQuantity = parseFloat(this.litersQuantity) + parseFloat(record.quantity);
 		
 			if (this.gasStations.hasOwnProperty(record.station)) {
 				this.gasStations[record.station]++;
@@ -67,6 +69,9 @@ export class HomePage {
 				this.gasStations[record.station] = 1;
 			}
 		}
+		
+		this.litersQuantity = this.litersQuantity.toFixed(2);
+		this.milagePrice = Number(this.milagePrice).toFixed(2);
 
 		Object.keys(this.gasStations).forEach((key) => {
 			this.gasStationValues.push(this.gasStations[key])
@@ -83,8 +88,7 @@ export class HomePage {
 		});
 
 		this.kilometers = records[records.length - 1].mileage - records[0].mileage;
-		this.averageConsumption = (100 / (this.kilometers / this.litersQuantity)).toFixed(2);
-		this.milagePrice = Math.round(this.milagePrice, 2);
+		this.averageConsumption = ( 100 / ( Number(this.kilometers) / Number(this.litersQuantity) ) ).toFixed(2);
 		this.lastFuelMileage = records[records.length -1]['mileage'];
 	}
 
@@ -94,16 +98,18 @@ export class HomePage {
 		this.lastExpenseMileage = records[records.length -1]['mileage'];
 		
 		for (let record of records) {
-			this.expensesTotal = Math.round(parseFloat(this.expensesTotal) + parseFloat(record.price),2);
+			this.expensesTotal = Number(this.expensesTotal) + Number(record.price);
 		}
+
+		this.expensesTotal = this.expensesTotal.toFixed(2);
 	}
 
 	ionViewDidLoad() {
 		this.db.list('fuel').valueChanges().subscribe((records) => {
 			
 			if (records.length > 0) {
-				this.calculateFuelData(records);
 				this.noFuelRecords = false;
+				this.calculateFuelData(records);
 			} else {
 				this.noFuelRecords = true;
 			}
@@ -114,6 +120,7 @@ export class HomePage {
 			if (records.length > 0) {
 				this.noExpensesRecords = false;
 				this.calculateExpensesData(records);
+
 			}
 		});
 	}
