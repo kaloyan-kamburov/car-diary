@@ -94,7 +94,7 @@ export class HomePage {
 		this.lastExpenseMileage = records[records.length -1]['mileage'];
 		
 		for (let record of records) {
-			this.expensesTotal = parseFloat(this.expensesTotal) + parseFloat(record.price);
+			this.expensesTotal = parseFloat(parseFloat(this.expensesTotal) + parseFloat(record.price));
 		}
 	}
 
