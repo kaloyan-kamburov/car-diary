@@ -1,0 +1,29 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>Авто дневник</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+		<ion-grid>
+			<ion-row>
+				<ion-col col-2>
+					<ion-icon name="ai-gas-station"></ion-icon>
+				</ion-col>
+				<ion-col col-10>
+					<p *ngIf="!noFuelRecords">Последно зареждане: {{lastFuelMileage}} км</p>
+					<p *ngIf="noFuelRecords">Няма въведени разходи за гориво.</p>
+				</ion-col>
+			</ion-row>
+			<ion-row>
+				<ion-col col-2>
+					<ion-icon name="logo-usd"></ion-icon>
+				</ion-col>
+				<ion-col col-10>
+					<p *ngIf="!noExpensesRecords">Последен разход: {{lastExpenseMileage}} км</p>
+					<p *ngIf="noExpensesRecords">Няма въведени други разходи.</p>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	
+</ion-content>

@@ -1,0 +1,24 @@
+ion-title {
+    padding: 0 !important;
+}
+
+form {
+    .item {
+        padding-left: 0;
+        margin-bottom: 20px;
+    }
+}
+
+.total {
+    float: left;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.btn-close {
+    width: 32px;
+}
+
+.scroll-content {
+    overflow-y: scroll;
+}

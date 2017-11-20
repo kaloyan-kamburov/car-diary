@@ -1,0 +1,126 @@
+<!--
+  Generated template for the MileagePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+	<ion-navbar>
+		<ion-title>Гориво</ion-title>
+		<ion-buttons end>
+
+			<button ion-button color="default" outline (click)="addRecord()" class="btn-add">
+				<ion-icon ios="ios-add" md="md-add"></ion-icon>
+			</button>
+		</ion-buttons>
+	</ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+	<ion-list>
+		<div *ngIf="noRecords">
+			Няма въведени записи
+		</div>
+
+		<div *ngFor="let record of fuelRecords">
+			<ion-item class="item-stable" [class.active]="isRecordOpen(record)" (click)="toggleRecordDetails(record)">
+				<ion-grid>
+					<ion-row>
+						<ion-col col-11>
+							{{record.date_added}}
+						</ion-col>
+						<ion-col col-1>
+							<ion-icon name="arrow-down" *ngIf="!isRecordOpen(record)"></ion-icon>
+							<ion-icon name="arrow-up" *ngIf="isRecordOpen(record)"></ion-icon>
+						</ion-col>
+					</ion-row>
+				</ion-grid>
+			</ion-item>
+
+			<ion-item class="item-accordion" [class.visible]="isRecordOpen(record)">
+				<ion-grid>
+					<ion-row>
+						<ion-col col-9>
+							<b>Бензиностанция</b>
+						</ion-col>
+						<ion-col col-3 class="float-right">
+							{{record.station}}
+						</ion-col>
+					</ion-row>
+
+					<ion-row>
+						<ion-col col-9>
+							<b>Пробег (км)</b>
+						</ion-col>
+						<ion-col col-3>
+							{{record.mileage}}
+						</ion-col>
+					</ion-row>
+
+
+					<ion-row>
+						<ion-col col-9>
+							<b>Цена литър (лв)</b>
+						</ion-col>
+						<ion-col col-3>
+							{{record.per_liter}}
+						</ion-col>
+					</ion-row>
+
+
+					<ion-row>
+						<ion-col col-9>
+							<b>Количество (л)</b>
+						</ion-col>
+						<ion-col col-3>
+							{{record.quantity}}
+						</ion-col>
+					</ion-row>
+
+
+					<ion-row>
+						<ion-col col-9>
+							<b>Общо (лв)</b>
+						</ion-col>
+						<ion-col col-3>
+							{{record.price}}
+						</ion-col>
+
+					</ion-row>
+
+					<ion-row>
+						<ion-col col-12 class="button-wrapper">
+							<button ion-button color="danger" outline (click)="deleteRecord(record)">
+								Изтрий
+							</button>
+
+							<button ion-button color="default" outline (click)="editRecord(record)">
+								Редактирай
+							</button>
+						</ion-col>
+					</ion-row>
+				</ion-grid>
+
+
+			</ion-item>
+
+		</div>
+
+
+		<ion-grid *ngIf="!allRecordsVisible">
+			<ion-row>
+				<ion-col col-12  class="button-wrapper show-all">
+					<button ion-button color="default" outline (click)="showAllRecords()">
+						Покажи всички
+					</button>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+		
+	</ion-list>
+
+</ion-content>

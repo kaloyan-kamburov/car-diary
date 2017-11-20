@@ -1,0 +1,41 @@
+.info-block {
+    width: 100%;
+    float: left;
+    line-height: 22px;
+    margin-top: 4px;
+    margin-bottom: 12px;
+    text-align: left;
+
+    b, span {
+        float: left;
+        clear: both;
+    }
+}
+
+.item-accordion {
+    overflow-y: auto;
+
+    .info-wrapper {
+        float: left;
+        width: 100%;
+        height: 280px;
+        overflow-y: auto;
+        padding-bottom: 54px;
+    }
+
+    &.expenses {
+        .button-wrapper {
+            background: #fff;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+    }
+
+    &.visible {
+        .item-inner {
+            position: relative;
+        }
+    }
+}
+
